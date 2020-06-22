@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Pictorial</string>g>
+    <string name="no_media_file_present_on_this_device">No Media file present on this device.</string>
+    <string name="need_permission_to_show_media">Need Permission to show Media.</string>
+</resources>
