@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         initToolbar()
 
-        binding.imageRecyclerview.addItemDecoration(MediaItemDecoration(this, 10, 2))
+        binding.imageRecyclerview.addItemDecoration(MediaItemDecoration(this, 15, 2))
 
         viewModel.filesList.observe(this, Observer {
             Log.d("IMAGES COUNT", "${it?.size ?: 0}")

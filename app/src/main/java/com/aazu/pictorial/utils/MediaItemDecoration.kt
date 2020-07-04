@@ -2,9 +2,12 @@ package com.aazu.pictorial.utils
 
 import android.content.Context
 import android.graphics.Rect
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+
 
 class MediaItemDecoration(
     private val context: Context,
@@ -26,14 +29,20 @@ class MediaItemDecoration(
             resources.displayMetrics
         )
 
+        super.getItemOffsets(outRect, view, parent, state)
+        val position = parent.getChildAdapterPosition(view)
+        val spanIndex =
+            (view.layoutParams as StaggeredGridLayoutManager.LayoutParams).spanIndex
+
         val itemPosition = (view.layoutParams as RecyclerView.LayoutParams).viewAdapterPosition
 
-        outRect.top = if (itemPosition < spanCount) 0 else spacingPx.toInt()
+        outRect.top = if (position < spanCount) 0 else spacingPx.toInt() * 2
         outRect.bottom = 0
 
-        val rowPosition = itemPosition % spanCount
+        val rowPosition = spanIndex % spanCount
         outRect.left = spacingPx.toInt()
-        outRect.right = if ((spanCount - 1) == rowPosition) spacingPx.toInt() else 0
+        outRect.right = spacingPx.toInt()
+        Log.d("TESTING", " Pos $position rowIndex $rowPosition && rightPadding ${outRect.right}")
 
     }
 }
